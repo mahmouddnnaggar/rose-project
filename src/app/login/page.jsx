@@ -1,56 +1,56 @@
-"use client";
-import { useFormik } from "formik";
-import Link from "next/link";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { object, string } from "yup";
-import { signIn } from "next-auth/react";
-import { toast } from "sonner";
+'use client';
+import { useFormik } from 'formik';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { object, string } from 'yup';
+import { signIn } from 'next-auth/react';
+import { toast } from 'sonner';
 export default function login() {
   const router = useRouter();
   const passwordRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
   // !=========show pass state & fn()========>
-  const [showPass, setShowPass] = useState("password");
-  const [eyeToShow, setEyeToShow] = useState("fa-solid fa-eye-slash");
+  const [showPass, setShowPass] = useState('password');
+  const [eyeToShow, setEyeToShow] = useState('fa-solid fa-eye-slash');
   function showPassword() {
-    if (showPass === "password") {
-      setShowPass("text");
-      setEyeToShow("fa-regular fa-eye");
+    if (showPass === 'password') {
+      setShowPass('text');
+      setEyeToShow('fa-regular fa-eye');
     } else {
-      setShowPass("password");
-      setEyeToShow("fa-solid fa-eye-slash");
+      setShowPass('password');
+      setEyeToShow('fa-solid fa-eye-slash');
     }
   }
   const validationSchema = object({
     email: string()
-      .required("Email address is required")
-      .email("Email is invalid"),
+      .required('Email address is required')
+      .email('Email is invalid'),
     password: string()
-      .required("Password is required")
+      .required('Password is required')
       .matches(
         passwordRegex,
-        "Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character"
+        'Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character'
       ),
   });
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema,
-    onSubmit: async (values) => {
-      const res = await signIn("credentials", {
+    onSubmit: async values => {
+      const res = await signIn('credentials', {
         email: values.email,
         password: values.password,
         redirect: false,
       });
       if (res?.error) {
-        console.error("Error during login:", res.error);
+        console.error('Error during login:', res.error);
       } else {
-        toast("login successfully.");
+        toast('login successfully.');
         setTimeout(() => {
-          router.push("/");
+          router.push('/');
         }, 1000);
       }
     },
@@ -109,7 +109,7 @@ export default function login() {
                 </label>
               </div>
               <Link
-                href={""}
+                href={''}
                 className="text-sm text-[#F82BA9] border-b border-[#F82BA9]"
               >
                 Forgot Password
@@ -118,15 +118,15 @@ export default function login() {
             <div className="flex justify-center text-[15px] pt-6  items-center gap-1">
               <p>No account?</p>
               <Link
-                href={""}
+                href={'/signup'}
                 className=" text-[#F82BA9] border-b border-[#F82BA9]"
               >
                 Create one here
               </Link>
             </div>
             <button className="bg-[#F82BA9] py-3 rounded-3xl mt-7 mb-2 w-full cursor-pointer">
-              {" "}
-              Login{" "}
+              {' '}
+              Login{' '}
             </button>
           </form>
         </div>

@@ -1,7 +1,7 @@
-""
+'';
 import HomeSwiper from '../components/HomeSwiper/HomeSwiper.jsx';
 import CategoryBar from '../components/CategoryBar/CategoryBar.jsx';
-import PestSeller from '../components/PestSeller/PestSeller.jsx';
+import PestSeller from '../components/BestSeller/BestSeller.jsx';
 import FeaturesBar from '../components/FeaturesBar/FeaturesBar.jsx';
 import AboutUs from '../components/AboutUs/AboutUs.jsx';
 import OurGallery from '../components/OurGallery/OurGallery.jsx';
@@ -12,15 +12,15 @@ import Product from '../components/Product/Product.jsx';
 export default function Home() {
   return (
     <>
-        <CategoryBar />
-        <HomeSwiper />
-        <FeaturesBar />
-        <PestSeller />
-        <Product />
-        <AboutUs />
-        <OurGallery />
-        <Customer />
-        <TrustedCompanies />
+      <CategoryBar />
+      <HomeSwiper />
+      <FeaturesBar />
+      <PestSeller />
+      <Product />
+      <AboutUs />
+      <OurGallery />
+      <Customer />
+      <TrustedCompanies />
     </>
   );
 }

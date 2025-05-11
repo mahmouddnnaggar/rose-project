@@ -7,7 +7,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
-import { userAction } from "../../store/features/user/user.slice";
+import { profileData, userAction } from "../../store/features/user/user.slice";
+import { alexBrush } from "../InstagramAbout/AlexBrush";
+import Profile from "../Profile/Profile";
 
 export default function Navbar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -33,7 +35,21 @@ export default function Navbar() {
     e.stopPropagation();
     closeMenu();
   };
+  const [showProfileModel, setShowProfileModel] = useState("hidden");
+  const [isOpenProfile, setIsOpenProfile] = useState(false);
 
+  function handelShowProfileModel() {
+    if (showProfileModel === "hidden") {
+      setShowProfileModel("fixed");
+      setIsOpenProfile(true);
+    }
+  }
+  function handelHideProfileModel() {
+    if (showProfileModel === "fixed") {
+      setShowProfileModel("hidden");
+      setIsOpenProfile(false);
+    }
+  }
   useEffect(() => {
     window.addEventListener("resize", (e) => {
       if (menuIsOpen && window.innerWidth > 768) {
@@ -48,7 +64,27 @@ export default function Navbar() {
   return (
     <nav className="flex justify-between mb-8 container py-1">
       <div className="logo relative size-[75px] ">
-        <Image src={logoBorder} alt="the border of logo" fill />
+        <Link href={"/"} className="logo  ">
+          <Image
+            src={logoBorder}
+            alt="the border of logo"
+            sizes="(max-width: 768px) 120px, 160p"
+            className=""
+            fill
+          />
+          <div className="absolute top-0 left-0 z-10 flex justify-center items-center flex-col ">
+            <h2
+              className={`text-[#F82BA9] text-[45px]  ${alexBrush.className}`}
+            >
+              Rose
+            </h2>
+            <h2
+              className={`text-[#F82BA9] text-[11px] mt-[-22px]   ${alexBrush.className}`}
+            >
+              Happy Gift
+            </h2>
+          </div>
+        </Link>
       </div>
       <ul className="links gap-4 items-center font-bold hidden md:flex">
         <li>
@@ -113,13 +149,11 @@ export default function Navbar() {
             </div>
             <button
               onClick={() => {
-                dispatch(userAction.clearToken());
+                handelShowProfileModel();
               }}
-              type="button
-              "
-              className=" cursor-pointer text-xl"
+              className="cursor-pointer text-xl text-[#F82BA9]"
             >
-              <i className="fa-solid fa-right-from-bracket text-[#F82BA9]"></i>
+              <i className="fa-regular fa-user"></i>
             </button>
           </>
         ) : (
@@ -151,7 +185,27 @@ export default function Navbar() {
         >
           <div className="header flex justify-between items-center">
             <div className="logo relative size-[75px] ">
-              <Image src={logoBorder} alt="the border of logo" fill />
+              <Link href={"/"} className="logo  ">
+                <Image
+                  src={logoBorder}
+                  alt="the border of logo"
+                  sizes="(max-width: 768px) 120px, 160p"
+                  className=""
+                  fill
+                />
+                <div className="absolute top-0 left-0 z-10 flex justify-center items-center flex-col ">
+                  <h2
+                    className={`text-[#F82BA9] text-[45px]  ${alexBrush.className}`}
+                  >
+                    Rose
+                  </h2>
+                  <h2
+                    className={`text-[#F82BA9] text-[11px] mt-[-22px]   ${alexBrush.className}`}
+                  >
+                    Happy Gift
+                  </h2>
+                </div>
+              </Link>
             </div>
             <CircleX
               onClick={closeMenu}
@@ -209,6 +263,11 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
+      <Profile
+        showProfileModel={showProfileModel}
+        isOpenProfile={isOpenProfile}
+        handelHideProfileModel={handelHideProfileModel}
+      />
     </nav>
   );
 }

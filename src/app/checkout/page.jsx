@@ -51,7 +51,7 @@ export default function Checkout() {
   });
 
   return (
-    <section className="min-h-[55vh] ">
+    <section className="min-h-[58vh] ">
       <div className="container py-10">
         <div className="Checkout grid grid-cols-12  gap-6 lg:gap-8 items-center ">
           <section className="col-span-12 px-10 xl:col-span-9">

@@ -1,6 +1,5 @@
 "use client";
 import Loading from "../../../components/Loading/Loading";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { use, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,16 +19,19 @@ export default function page(props) {
       url: "https://flower.elevateegy.com/api/v1/products",
       method: "GET",
     };
-    let { data } = await axios.request(options);
+    const { data } = await axios.request(options);
     setProduct(data.products);
   }
-  async function getSpecificProducts(id) {
-    const options = {
-      url: `https://flower.elevateegy.com/api/v1/products/${id}`,
-      method: "GET",
-    };
-    let { data } = await axios.request(options);
-    setSpecificProducts(data.product);
+  async function getSpecificProducts() {
+
+  const options = {
+    url: `https://flower.elevateegy.com/api/v1/products/${id}`,
+    method: "GET",
+  };
+  const { data } = await axios.request(options);
+  setSpecificProducts(data.product);
+  console.log(data)
+
   }
 
   useEffect(() => {
@@ -77,9 +79,7 @@ export default function page(props) {
                   <i className="fa-solid fa-bag-shopping text-white "></i> Add
                   To Card
                 </button>
-                <button className=" cursor-pointer bg-[#F82BA9] transition-colors h-9 w-9 flex justify-center items-center  rounded-full text-white font-semibold ">
-                  <i className="fa-solid fa-heart text-white text-xl"></i>
-                </button>
+
               </div>
             </div>
           </section>

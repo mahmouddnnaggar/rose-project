@@ -61,7 +61,7 @@ export const payOnline = createAsyncThunk(
 );
 export const getOrders = createAsyncThunk(
   "getOrders/pay",
-  async function (values, { getState, rejectWithValue }) {
+  async function (_, { getState, rejectWithValue }) {
     try {
       const token = getState().userReducer.token;
       if (!token)
@@ -75,9 +75,8 @@ export const getOrders = createAsyncThunk(
       });
 
       return data;
-    } catch (err) {
-      console.error(err);
-      return rejectWithValue("Failed to decrease Quantity Try again.");
+    } catch (error) {
+      console.log("Request error:", error);
     }
   }
 );
@@ -85,6 +84,7 @@ export const payAndOrder = createSlice({
   name: "pay",
   initialState: {
     data: null,
+    orderData: null,
     cashData: null,
     onlineData: null,
     loading: false,
@@ -121,18 +121,16 @@ export const payAndOrder = createSlice({
       state.error = action.error.message;
       toast.error("Payment failed. Please try again.");
     });
-    builder.addCase(getOrders.pending, (state) => {
+    builder.addCase(getOrders.pending, (state, action) => {
       state.loading = true;
     });
     builder.addCase(getOrders.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
-      toast.success("The operation was successful.");
+      state.orderData = action.payload.orders;
     });
     builder.addCase(getOrders.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message;
-      toast.error("Payment failed. Please try again.");
+      state.error = action.payload;
     });
   },
 });

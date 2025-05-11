@@ -37,10 +37,10 @@ export default function Product({ inCategory = false }) {
           </h2>
         </div>
         <div
-          className={`product-box grid grid-cols-1 md:grid-cols-2  ${
+          className={`product-box grid grid-cols-1   ${
             inCategory
-              ? 'lg:grid-cols-2 xl:grid-cols-3 gap-6'
-              : 'lg:grid-cols-3 xl:grid-cols-4 gap-6'
+              ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'
+              : 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
           }`}
         >
           {data.data.products.map(product => (

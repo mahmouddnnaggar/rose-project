@@ -6,7 +6,14 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addCartProduct } from "../../store/features/cart/cart.slice";
 
-export default function Card({ title, rate, price, sellPrice, image, id }) {
+export default function OrderCards({
+  title,
+  rate,
+  price,
+  sellPrice,
+  image,
+  id,
+}) {
   const dispatch = useDispatch();
   return (
     <div className="card w-full relative px-2 md:px-0 group">
@@ -49,14 +56,6 @@ export default function Card({ title, rate, price, sellPrice, image, id }) {
               </span>
             </p>
           </div>
-          <button
-            onClick={() => {
-              dispatch(addCartProduct(id));
-            }}
-            className="bg-[#732efc] w-10 h-10 rounded-full cursor-pointer flex justify-center items-center"
-          >
-            <i className="fa-solid fa-bag-shopping text-white text-[18px]"></i>
-          </button>
         </div>
       </div>
     </div>

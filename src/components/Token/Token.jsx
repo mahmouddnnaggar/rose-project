@@ -1,5 +1,4 @@
 "use client";
-import { fetchCartProducts } from "../../store/features/cart/cart.slice";
 import { userAction } from "../../store/features/user/user.slice";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
@@ -13,7 +12,7 @@ export default function Token() {
     if (session) {
       dispatch(userAction.setToken(session));
     }
-    dispatch(fetchCartProducts());
   }, [session, dispatch]);
-  return;
+
+  return null;
 }

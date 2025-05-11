@@ -1,23 +1,23 @@
-'use client';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import Card from '../Card/Card';
-import product from '../../assets/img/photo-1505740420928-5e560c06d30e.jpeg';
-import SwiperNavButton from '../SwiperNavButton/SwiperNavButton';
-import Loading from '../Loading/Loading';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import Card from "../Card/Card";
+import product from "../../assets/img/photo-1505740420928-5e560c06d30e.jpeg";
+import SwiperNavButton from "../SwiperNavButton/SwiperNavButton";
+import Loading from "../Loading/Loading";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PestSeller() {
   async function getProducts() {
     const options = {
-      url: 'https://flower.elevateegy.com/api/v1/products',
-      method: 'GET',
+      url: "https://flower.elevateegy.com/api/v1/products",
+      method: "GET",
     };
     return axios.request(options);
   }
   let { data, isLoading } = useQuery({
-    queryKey: ['product'],
+    queryKey: ["product"],
     queryFn: getProducts,
     staleTime: 6 * 6 * 60 * 1000,
     refetchOnMount: false,
@@ -69,10 +69,10 @@ export default function PestSeller() {
               }}
               loop={true}
               keyboard={{ enabled: true }}
-              className="w-full h-full relative"
+              className="w-full relative "
             >
-              <SwiperNavButton bgcolor={'#F82BA9'} isInBestSeller={true} />
-              {data.data.products.map(product => (
+              <SwiperNavButton bgcolor={"#F82BA9"} />
+              {data.data.products.map((product) => (
                 <SwiperSlide>
                   <Card
                     key={product.id}
@@ -85,6 +85,8 @@ export default function PestSeller() {
                   />
                 </SwiperSlide>
               ))}
+           
+             
             </Swiper>
           </div>
         </div>

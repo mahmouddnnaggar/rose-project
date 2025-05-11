@@ -21,11 +21,10 @@ const handler = NextAuth({
               token: data.token,
             };
           } else {
-            return null;
+            throw new Error(data.error);
           }
-        } catch (error) {
-          console.error("Error during login:", error);
-          return null;
+        } catch (error) { 
+      throw new Error(error.response?.data?.error ); 
         }
       },
     }),
@@ -36,11 +35,11 @@ const handler = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: "jwt",  
+    maxAge: 30 * 24 * 60 * 60,
   },
 
   jwt: {
     secret: process.env.AUTH_SECRET,
-
     encryption: false,
   },
 
@@ -55,6 +54,7 @@ const handler = NextAuth({
       session.user.accessToken = token.accessToken;
       return session.user.accessToken;
     },
+
   },
 });
 export { handler as GET, handler as POST }

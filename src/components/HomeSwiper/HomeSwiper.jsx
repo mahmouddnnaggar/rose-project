@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import giftImg from "../../../public/images/Red christmas gifts with white ribbon.png";
 import swiperBg from "../../../public/images/swiperBackground.png";
 import swiperBg1 from "../../../public/images/c0b09b5746e8d70ae00bd5fc9448462f.jpeg";
@@ -8,7 +8,7 @@ import card1 from "../../../public/images/1.png";
 import card2 from "../../../public/images/2.png";
 import card3 from "../../../public/images/3.png";
 import Image from "next/image";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -39,7 +39,11 @@ export default function HomeSwiper() {
               className="home-swiper"
               spaceBetween={50}
               slidesPerView={1}
-              modules={[Pagination]}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Pagination]}
               pagination={true}
               loop={true}
               keyboard={{ enabled: true }}

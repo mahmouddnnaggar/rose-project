@@ -10,6 +10,7 @@ import Loading from "../../components/Loading/Loading";
 import Link from "next/link";
 import emptyCart from "../../../public/images/empty-cart.png";
 import Image from "next/image";
+
 export default function Cart() {
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ export default function Cart() {
     <>
       {data == "" || Quant === 0 ? (
         <>
-          <section className="min-h-[55vh] py-15">
+          <section className="min-h-[58vh] py-15">
             <div className="container">
               <div className="w-full flex justify-center items-center">
                 <Image
@@ -56,7 +57,7 @@ export default function Cart() {
           </section>
         </>
       ) : (
-        <div className="cart py-20">
+        <div className="cart min-h-[58vh] py-20">
           <div className="container">
             <div className="grid grid-cols-12  gap-4 lg:gap-8">
               <div className=" col-span-12 xl:col-span-9 p-3 flex flex-col gap-4">

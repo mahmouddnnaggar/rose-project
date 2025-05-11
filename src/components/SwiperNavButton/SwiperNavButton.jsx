@@ -1,13 +1,9 @@
-import { useSwiper } from 'swiper/react';
+import { useSwiper } from "swiper/react";
 
-export default function SwiperNavButton({ bgcolor, isInBestSeller = false }) {
+export default function SwiperNavButton ({bgcolor}) {
   const swiper = useSwiper();
   return (
-    <div
-      className={`flex justify-between absolute translate-y-[-50%]  z-50 w-full gap-4 p-3 ${
-        isInBestSeller ? 'top-[40%]' : 'top-[50%]'
-      }`}
-    >
+    <div className="flex justify-between absolute top-[50%] translate-y-[-50%]  z-50 w-full gap-4 my-3">
       <button
         className={` cursor-pointer w-8 h-8 rounded-full bg-[${bgcolor}]  flex justify-center items-center  text-white  hover:text-white hover:scale-105 transition-all `}
         onClick={() => {
@@ -26,4 +22,4 @@ export default function SwiperNavButton({ bgcolor, isInBestSeller = false }) {
       </button>
     </div>
   );
-}
+};

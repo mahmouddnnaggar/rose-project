@@ -1,11 +1,14 @@
-import Product from '../../components/Product/Product';
-
-export default function page() {
+import Product from "../../components/Product/Product";
+export const metadata = {
+  title: "Rose-All-category",
+  description: "all-category page for rose e-commerce",
+};
+export default function category() {
   return (
     <>
-      <div className="container">
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-3">
+      <div className="container py-10">
+        <div className="grid grid-cols-12 gap-5 ">
+          <div className="col-span-12 md:col-span-4 lg:col-span-3">
             <div className="search border-2 border-gray-100 rounded-lg p-5 mb-5">
               <h2 className="font-bold mb-5">Search</h2>
               <input
@@ -137,7 +140,7 @@ export default function page() {
               </ul>
             </div>
           </div>
-          <div className="col-span-9">
+          <div className="col-span-12 md:col-span-8 lg:col-span-9">
             <Product inCategory={true} />
           </div>
         </div>
